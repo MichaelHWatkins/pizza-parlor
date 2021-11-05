@@ -7,13 +7,13 @@ function Pizza(){
 
 Pizza.prototype.cost = function() {
   if(this.size === "small"){
-    return 5 + (this.toppings * 3);
+    return 5 + (this.toppings.length * 3);
   }
   else if(this.size === "medium"){
-    return 10 + (this.toppings * 3);
+    return 10 + (this.toppings.length * 3);
   }
   else{
-    return 15 + (this.toppings * 3);
+    return 15 + (this.toppings.length * 3);
   }
 }
 //UI Logic
