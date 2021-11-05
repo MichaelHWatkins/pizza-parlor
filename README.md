@@ -36,9 +36,6 @@ Code: myPizza.cost()
 Expected Output: 15
 
 
-Describe: 
-
-
 ## Setup/Installation Requirements
 
 * _Navigate to https://github.com/MichaelHWatkins/pizza-parlor_
