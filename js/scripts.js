@@ -63,12 +63,9 @@ $(document).ready(function() {
     newReceipt.addOrder(newPizza)
     $("ol#receipt").empty();
     for (let i = 1; i <= newReceipt.orderNumber; i++) {
-      $("ol#receipt").append("<li id='" + newReceipt.order[i].orderNumber + "'>" + newReceipt.order[i].name + "<span id='pizza' class=" + newReceipt.order[i].orderNumber + 1 + ">"+ newReceipt.order[i].toppings[0] + ", " + 
-      newReceipt.order[i].toppings[1] + ", " + newReceipt.order[i].size + " = " + newReceipt.order[i].cost() + "</span></li>");
-      $("ol#receipt").on("click", "pizza", function() {
-        console.log("test")
-        $('#pizza').css({"display": "block"});
-      });
+      $("ol#receipt").append("<li id='" + newReceipt.order[i].orderNumber + "'>" + newReceipt.order[i].name + newReceipt.order[i].toppings[0] + ", " + 
+      newReceipt.order[i].toppings[1] + "," + newReceipt.order[i].toppings[2] + ", " + newReceipt.order[i].size + " = " + newReceipt.order[i].cost() + "</li>");
+      
     }
     $("#output").text("Cost: $" + newReceipt.totalCost );
   });
