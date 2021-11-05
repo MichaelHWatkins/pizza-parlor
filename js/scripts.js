@@ -31,6 +31,6 @@ $(document).ready(function() {
     newPizza.toppings.push(veg1);
     newPizza.toppings.push(veg2);
     const pizzaCost = newPizza.cost()
-    $("#output").html(pizzaCost);
+    $("#output").text("Cost: $" + pizzaCost + "\n" + "Size: " + newPizza.size + "\n" + "Toppings: " + newPizza.toppings);
   });
 });
