@@ -1,4 +1,13 @@
 //Business Logic
+function Receipt(){
+  this.order = [];
+  this.totalCost = 0;
+}
+
+Receipt.prototype.addPie = function(pie) {
+  this.order.push(pie);
+  this.totalCost += pie.cost();
+}
 
 function Pizza(){
   this.toppings = [];
@@ -17,7 +26,7 @@ Pizza.prototype.cost = function() {
   }
 }
 //UI Logic
-
+let newReceipt = new Receipt();
 $(document).ready(function() {
   $("#display-address-form").click(function(event) {
     event.preventDefault();
@@ -34,7 +43,7 @@ $(document).ready(function() {
     newPizza.toppings.push(meat);
     newPizza.toppings.push(veg1);
     newPizza.toppings.push(veg2);
-    const pizzaCost = newPizza.cost()
-    $("#output").text("Cost: $" + pizzaCost + " Size: " + newPizza.size + " Toppings: " + newPizza.toppings);
+    newReceipt.addPie(newPizza)
+    $("#output").text("Cost: $" + newReceipt.totalCost );
   });
 });

@@ -35,6 +35,12 @@ Test: "It should return the cost of a Pizza with toppings"
 Code: myPizza.cost()
 Expected Output: 15
 
+Describe: Receipt()
+
+Test: "It should return a receipt object with a list of pizzas as a property"
+Code: const newReceipt = new Receipt(["myPizza"]);
+Expect Output: myPizza
+
 
 ## Setup/Installation Requirements
 
