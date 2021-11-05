@@ -17,3 +17,20 @@ Pizza.prototype.cost = function() {
   }
 }
 //UI Logic
+
+$(document).ready(function() {
+  $("form#new-pizza").submit(function(event) {
+    event.preventDefault();
+    const size = $("#size").val();
+    const meat = $("#meat").val();
+    const veg1 = $("#veg1").val();
+    const veg2 = $("#veg2").val();
+    let newPizza = new Pizza();
+    newPizza.size = size;
+    newPizza.toppings.push(meat);
+    newPizza.toppings.push(veg1);
+    newPizza.toppings.push(veg2);
+    const pizzaCost = newPizza.cost()
+    $("#output").html(pizzaCost);
+  });
+});
