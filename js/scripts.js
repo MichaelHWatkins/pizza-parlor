@@ -19,6 +19,10 @@ Pizza.prototype.cost = function() {
 //UI Logic
 
 $(document).ready(function() {
+  $("#display-address-form").click(function(event) {
+    event.preventDefault();
+    $("#address-form").show();
+  })
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
     const size = $("#size").val();
@@ -31,6 +35,6 @@ $(document).ready(function() {
     newPizza.toppings.push(veg1);
     newPizza.toppings.push(veg2);
     const pizzaCost = newPizza.cost()
-    $("#output").text("Cost: $" + pizzaCost + "Size: " + newPizza.size + "Toppings: " + newPizza.toppings);
+    $("#output").text("Cost: $" + pizzaCost + " Size: " + newPizza.size + " Toppings: " + newPizza.toppings);
   });
 });
