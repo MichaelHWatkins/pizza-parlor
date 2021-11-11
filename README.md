@@ -52,6 +52,7 @@ Expect Output: myPizza
 * _After cloning the project, navigate into it using the command "cd rogers-neighborhood"_
 * _Use the command "git remote" to confirm the creation of the new local repository_
 * _Open the project with the code editor of your choice_
+* _To run in the local browser, right click on the index.html and click the Live Server option_
 
 _Note: when using the commands listed above, do not include the quotation marks. They are used here for readability._
 

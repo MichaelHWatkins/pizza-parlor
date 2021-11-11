@@ -16,6 +16,14 @@ Receipt.prototype.addOrderNumber = function() {
   return this.orderNumber;
 }
 
+Receipt.prototype.findReceipt = function(id) {
+  if (this.order[id] != undefined) {
+    return this.order[id];
+  }
+  return false;
+};
+
+
 function Pizza(){
   this.toppings = [];
   this.size = "";
@@ -34,19 +42,31 @@ Pizza.prototype.cost = function() {
   }
 }
 
-function attachContactListeners() {
-  
-}
+
 //UI Logic
+
+function displayReceiptDetails(receiptToDisplay) {
+  let receiptList = $("ol#receipt");
+  let htmlForOrderInfo = "";
+  Object.keys(receiptToDisplay.order).forEach(function(key) {
+    const receipt = receiptToDisplay.findReceipt(key);
+    htmlForOrderInfo += "<li id=" + receipt.id + ">" + receipt.name + "</li>";
+  });
+  receiptList.html(htmlForOrderInfo);
+}
+function attachContactListeners() {
+  $("ol#receipt").on("click", "li", function() {
+    showOrder(this.id);  
+  });
+}
 
 let newReceipt = new Receipt();
 $(document).ready(function() {
-
+  attachReceiptListeners();
   $("#display-address-form").click(function(event) {
     event.preventDefault();
     $("#address-form").show();
   })
- 
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
     const size = $("#size").val();
@@ -62,11 +82,7 @@ $(document).ready(function() {
     newPizza.toppings.push(veg2);
     newReceipt.addOrder(newPizza)
     $("ol#receipt").empty();
-    for (let i = 1; i <= newReceipt.orderNumber; i++) {
-      $("ol#receipt").append("<li id='" + newReceipt.order[i].orderNumber + "'>" + newReceipt.order[i].name + newReceipt.order[i].toppings[0] + ", " + 
-      newReceipt.order[i].toppings[1] + "," + newReceipt.order[i].toppings[2] + ", " + newReceipt.order[i].size + " = " + newReceipt.order[i].cost() + "</li>");
-      
-    }
+    displayReceiptDetails(newReceipt);
     $("#output").text("Cost: $" + newReceipt.totalCost );
   });
 });
