@@ -73,7 +73,6 @@ $(document).ready(function() {
       toppingsArray.push(topping);
     });
     let newPizza = new Pizza(toppingsArray, size, name)
-    console.log(newPizza)
     newReceipt.addOrder(newPizza)
     $("ol#receipt").empty();
     displayReceiptDetails(newReceipt);
