@@ -25,21 +25,41 @@ _Users will enter a number and an array is returned._
 Describe: Pizza()
 
 Test: "It should return a Pizza object with two properties for toppings and size"
-Code: const myPizza = new Pizza(["anchovies", "pineapple"], "medium");
-Expected Output: ["anchovies", "pineapple"], "medium" 
+Code: const myPizza = new Pizza(["anchovies", "pineapple"], "medium", "Mike");
+Expected Output: ["anchovies", "pineapple"], "medium", "Mike" 
 
 
 Describe Pizza.prototype.cost()
 
 Test: "It should return the cost of a Pizza with toppings"
 Code: myPizza.cost()
-Expected Output: 15
+Expected Output: 16
 
 Describe: Receipt()
 
 Test: "It should return a receipt object with a list of pizzas as a property"
-Code: const newReceipt = new Receipt(["myPizza"]);
-Expect Output: myPizza
+Code: const newReceipt = new Receipt();
+Expect Output: this.order = {}, this.orderNumber = 0, this.totalCost = 0
+
+Describe: Receipt.prototype.addOrderNumber
+
+Test: "It should return the number that will be the id of the order in addOrder"
+Code: newReceipt.addOrderNumber()
+Expected Output: 1
+
+Describe: Receipt.prototype.addOrder
+
+Test: "It should return nothing but add an order to the total cost
+Code: newReceipt.addOrder(pie)
+Expected Output: 
+
+Describe: Receipt.prototype.findReceipt
+
+Test: "It should return whether there is a receipt"
+Code: const newReceipt.findReceipt(1)
+Expected Output = True
+
+
 
 
 ## Setup/Installation Requirements

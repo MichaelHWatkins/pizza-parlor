@@ -24,14 +24,15 @@ Receipt.prototype.findReceipt = function(id) {
 };
 
 
-function Pizza(){
-  this.toppings = [];
-  this.size = "";
-  this.name = "";
+function Pizza(toppings, size, name){
+  this.toppings = toppings;
+  this.size = size;
+  this.name = name;
 }
 
 Pizza.prototype.cost = function() {
   if(this.size === "small"){
+    console.log(this.toppings.length)
     return 5 + (this.toppings.length * 3);
   }
   else if(this.size === "medium"){
@@ -50,19 +51,14 @@ function displayReceiptDetails(receiptToDisplay) {
   let htmlForOrderInfo = "";
   Object.keys(receiptToDisplay.order).forEach(function(key) {
     const receipt = receiptToDisplay.findReceipt(key);
-    htmlForOrderInfo += "<li id=" + receipt.id + ">" + receipt.name + "</li>";
+    htmlForOrderInfo += "<li id=" + receipt.id + ">" + receipt.name + " " + receipt.toppings + " " + receipt.size + "</li>";
   });
   receiptList.html(htmlForOrderInfo);
 }
-function attachContactListeners() {
-  $("ol#receipt").on("click", "li", function() {
-    showOrder(this.id);  
-  });
-}
+
 
 let newReceipt = new Receipt();
 $(document).ready(function() {
-  attachReceiptListeners();
   $("#display-address-form").click(function(event) {
     event.preventDefault();
     $("#address-form").show();
@@ -70,16 +66,14 @@ $(document).ready(function() {
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
     const size = $("#size").val();
-    const meat = $("#meat").val();
-    const veg1 = $("#veg1").val();
-    const veg2 = $("#veg2").val();
     const name = $("#name").val();
-    let newPizza = new Pizza();
-    newPizza.name = name;
-    newPizza.size = size;
-    newPizza.toppings.push(meat);
-    newPizza.toppings.push(veg1);
-    newPizza.toppings.push(veg2);
+    let toppingsArray = [];
+    let exampleToppings = $("input:checkbox[name=toppingsInput]:checked").each(function() {
+      let topping = $(this).val();
+      toppingsArray.push(topping);
+    });
+    let newPizza = new Pizza(toppingsArray, size, name)
+    console.log(newPizza)
     newReceipt.addOrder(newPizza)
     $("ol#receipt").empty();
     displayReceiptDetails(newReceipt);
